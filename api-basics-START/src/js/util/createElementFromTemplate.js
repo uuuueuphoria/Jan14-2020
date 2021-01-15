@@ -8,11 +8,10 @@ function createElementFromTemplate(template = []) {
     throw new Error('You must add array of template literals as valid markup');
   }
 
-  elements = template.map((templateLiteral, index) => {
+  elements = template.map((templateLiteral) => {
     const element = document
       .createRange()
-      .createContextualFragment(templateLiteral);
-    console.log(element);
+      .createContextualFragment(templateLiteral).children[0];
     return element;
   });
 

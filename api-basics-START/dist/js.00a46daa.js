@@ -178,9 +178,8 @@ function createElementFromTemplate() {
     throw new Error('You must add array of template literals as valid markup');
   }
 
-  elements = template.map(function (templateLiteral, index) {
-    var element = document.createRange().createContextualFragment(templateLiteral);
-    console.log(element);
+  elements = template.map(function (templateLiteral) {
+    var element = document.createRange().createContextualFragment(templateLiteral).children[0];
     return element;
   });
   return elements;
@@ -230,10 +229,9 @@ window.addEventListener('load', function (e) {
   (0, _fetchData.httpGetRequest)('https://reqres.in/api/users').then(function (result) {
     //passing data and getting back an array of template literals with data inside
     var templates = (0, _employee.default)(result.data);
-    console.log(templates);
     var markup = (0, _createElementFromTemplate.default)(templates);
-    var employees = (0, _addMarkupToPage.default)('aside', 'display', templates);
-    document.querySelector('.display').innerHTML = templates;
+    var employees = (0, _addMarkupToPage.default)('aside', 'display', markup);
+    document.querySelector('.display').prepend(employees);
   });
 });
 },{"./util/fetch-data.js":"js/util/fetch-data.js","./views/employee.js":"js/views/employee.js","./util/createElementFromTemplate":"js/util/createElementFromTemplate.js","./util/addMarkupToPage":"js/util/addMarkupToPage.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {

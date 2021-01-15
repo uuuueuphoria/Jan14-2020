@@ -12,9 +12,8 @@ window.addEventListener('load', function (e) {
   httpGetRequest('https://reqres.in/api/users').then((result) => {
     //passing data and getting back an array of template literals with data inside
     const templates = employeeView(result.data);
-    console.log(templates);
     const markup = createElementFromTemplate(templates);
-    const employees = markupContainer('aside', 'display', templates);
-    document.querySelector('.display').innerHTML = templates;
+    const employees = markupContainer('aside', 'display', markup);
+    document.querySelector('.display').prepend(employees);
   });
 });
